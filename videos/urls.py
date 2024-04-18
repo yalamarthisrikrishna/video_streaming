@@ -14,4 +14,5 @@ urlpatterns = [
     path('video/<int:pk>/', views.video_detail, name='video_detail'),
     path('video_feed/<path:video_path>/', views.video_feed, name='video_feed'),
     path('permission_denied/', views.permission_denied, name='permission_denied'),
+    path('video-player/<path:video_url>/<str:video_name>/', views.video_player_view, name='video_player_view'),
 ]

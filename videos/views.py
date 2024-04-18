@@ -5,7 +5,7 @@ from .forms import SignupForm, LoginForm, VideoForm, VideoSearchForm
 from .models import Video
 import cv2
 import threading
-from django.http import StreamingHttpResponse,HttpResponseServerError,HttpResponseRedirect
+from django.http import StreamingHttpResponse,HttpResponseServerError,HttpResponse
 from django.views.decorators import gzip
 from pytube import YouTube
 from urllib.parse import unquote
@@ -108,6 +108,10 @@ def all_videos(request):
 
     return render(request, 'all_videos.html', {'videos': videos, 'search_form': search_form})
 
+# def video_player_view(request, video_url):
+#     # Render the video player template and pass the video URL to it
+#     return render(request, 'video_player.html', {'video_url': video_url})
+
 
 def video_detail(request, pk):
     # Retrieve the video object with the given primary key (pk) from the database
@@ -142,7 +146,9 @@ def frame_generator(camera):
             break
         ret, jpeg = cv2.imencode('.jpg', frame)
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n')
+               b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n').decode(errors='ignore')
+
+
 
 
 def handle_video_feed(camera):
@@ -159,11 +165,12 @@ def video_feed(request, video_path):
     try:
         # Decode the video path
         decoded_video_path = unquote(video_path)
-
+        print(decoded_video_path)
         # Download YouTube video and open it using OpenCV
         yt = YouTube(decoded_video_path)
         video_stream = yt.streams.filter(file_extension='mp4').first()
         video_path = video_stream.download(filename='temp_video')
+        print(video_path)
 
         # Create a VideoCamera object
         camera = VideoCamera(video_path)
@@ -176,3 +183,34 @@ def video_feed(request, video_path):
         return HttpResponse("Video feed started successfully!")  # Return a response indicating the feed started
     except Exception as e:
         return HttpResponseServerError(f"Error: {str(e)}")
+
+
+def video_player_view(request, video_url, video_name):
+    try:
+        # Download YouTube video and open it using OpenCV
+        yt = YouTube(video_url)
+        video_stream = yt.streams.filter(file_extension='mp4').first()
+        video_path = video_stream.download(filename='temp_video')
+
+
+        # Create a VideoCamera object
+        camera = VideoCamera(video_path)
+
+        # Define a function to start fetching the video feed data in the background
+        def start_video_feed():
+            video_feed_data = ''.join(frame_generator(camera))
+            # Update the video player view with the feed data
+            response = StreamingHttpResponse(video_feed_data, content_type='multipart/x-mixed-replace; boundary=frame')
+            return response
+
+        # Start fetching the video feed data in a separate thread
+        thread = threading.Thread(target=start_video_feed)
+        thread.daemon = True
+        thread.start()
+
+        # Render the video player template with video name
+        return render(request, 'video_player.html', {'video_name': video_name})
+
+    except Exception as e:
+        return render(request, 'error.html', {'error_message': str(e)})
+

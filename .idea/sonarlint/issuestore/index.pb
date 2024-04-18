@@ -43,3 +43,9 @@ R
 0venv/Lib/site-packages/django/template/loader.py,0\f\0f56c0fbfdfae0bceb896b0df02e176d78d96ccd
 W
 'videos/templates/permission_denied.html,d\a\da710daa3fdf55efaaf6eea760c5e9f6b484d97b
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+R
+"videos/templates/video_player.html,1\e\1e9f5dbb7dee2d3296bed4ed30cb1b90147d7c0f
+K
+videos/templates/error.html,4\c\4cba33df670892f393d8caa7edb3aa34d977b7a9

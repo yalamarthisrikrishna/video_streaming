@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ video_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #video-container {
+            width: 80%;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <h1>{{ video_name }}</h1>
+        <video id="video-player" controls autoplay>
+            <!-- Display the video feed data -->
+            {{ video_feed_data|safe }}
+        </video>
+    </div>
+</body>
+</html>
+
