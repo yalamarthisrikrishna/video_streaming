@@ -5,7 +5,7 @@ from .forms import SignupForm, LoginForm, VideoForm, VideoSearchForm
 from .models import Video
 import cv2
 import threading
-from django.http import StreamingHttpResponse,HttpResponseServerError,Http404
+from django.http import StreamingHttpResponse,HttpResponseServerError,HttpResponseRedirect
 from django.views.decorators import gzip
 from pytube import YouTube
 from urllib.parse import unquote
@@ -60,7 +60,12 @@ def create_video(request):
     return render(request, 'create_video.html', {'form': form})
 
 def edit_video(request, pk):
-    video = get_object_or_404(Video, pk=pk, user=request.user)
+    try:
+        video = Video.objects.get(pk=pk, user=request.user)
+    except ObjectDoesNotExist:
+        # Video does not exist or user doesn't have permission
+        return redirect('permission_denied')
+
     if request.method == 'POST':
         form = VideoForm(request.POST, instance=video)
         if form.is_valid():

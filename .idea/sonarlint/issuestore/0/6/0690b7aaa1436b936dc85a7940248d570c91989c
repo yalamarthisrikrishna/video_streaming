@@ -1,3 +1,2 @@
 
-npython:S1854C"JRemove this assignment to local variable 'video'; the value is never used.(¬íÕõøÿÿÿÿ8Û§µüî1
-Lpython:S1481~"-Replace unused local variable "ret" with "_".(¸ßÎ8Û§µüî1
+Mpython:S1481ƒ"-Replace unused local variable "ret" with "_".(¸ßÎ8Ç©ÿî1
