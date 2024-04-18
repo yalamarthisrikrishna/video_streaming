@@ -49,3 +49,5 @@ R
 "videos/templates/video_player.html,1\e\1e9f5dbb7dee2d3296bed4ed30cb1b90147d7c0f
 K
 videos/templates/error.html,4\c\4cba33df670892f393d8caa7edb3aa34d977b7a9
+@
+requirements.txt,1\9\19359a61ae2446b51b549167b014da2fcf265768
