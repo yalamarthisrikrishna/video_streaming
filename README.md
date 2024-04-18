@@ -32,7 +32,7 @@ This is a Django-based video streaming application that allows users to upload, 
 
 ## Contact
 
-For support or inquiries, please contact yalamarthisrikrishna@gmail.com@example.com.
+For support or inquiries, please contact yalamarthisrikrishna@gmail.com
 
 
 
