@@ -18,8 +18,7 @@ This is a Django-based video streaming application that allows users to upload, 
 2. Install dependencies:pip install -r requirements.txt
 3. Apply database migrations:python manage.py migrate
 4. Run the development server:python manage.py runserver
-5. 
-6. Access the application in your web browser at http://localhost:8000/
+5. Access the application in your web browser at http://localhost:8000/
 
 ## Usage
 
