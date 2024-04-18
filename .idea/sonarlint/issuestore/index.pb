@@ -1,0 +1,45 @@
+
+@
+videos/models.py,7\f\7feee5c333658eb9ad78127276c06b35851c8a4e
+?
+videos/admin.py,7\3\73def194eef9edfad1f924b6e1cf07624fbaf64d
+K
+video_streaming/settings.py,9\c\9c6cd4dc9cc9c7d2d76ef1add20dba8a78e3f2d3
+>
+videos/urls.py,e\2\e2101eb581cd555d7ea011dfbef0fc351b253fff
+?
+videos/forms.py,5\f\5f490252149e3c998bbee59597fd6f6bbbd41861
+>
+videos/apps.py,8\6\865459cfc1460d443bd0c13569e971ae0ed4039b
+?
+videos/tests.py,8\c\8ce9a059bc8bd1e767772105eea3fc339226e777
+?
+videos/views.py,0\6\0690b7aaa1436b936dc85a7940248d570c91989c
+h
+8venv/Lib/site-packages/django/contrib/auth/decorators.py,4\0\40c6bcd2a8a332af29191d0025852cb0c6900acd
+P
+ videos/templates/users/base.html,6\d\6d54d6e65a3e344db48865758de920cce72d7b2f
+[
++videos/templates/users/change_password.html,f\2\f20b6646b9b9166ad653ea00f701227af6d83b37
+G
+video_streaming/urls.py,d\7\d72c745fe320776756d4f7738412b3c18fed90dd
+K
+videos/templates/index.html,6\f\6f3d77d385dd62d1182e86ce991ce42c0f82988f
+K
+videos/templates/login.html,f\1\f1cdeb5fd6e62c123966804c4f20f68dec7110ee
+L
+videos/templates/signup.html,a\0\a09421b24f203d8fe193ad71468820cf5ea72df5
+R
+"videos/templates/create_video.html,0\a\0a2144626be9b3c5c07aab066ed7886dd9ad8b03
+P
+ videos/templates/edit_video.html,c\4\c4c94422997d4980f61e2e99c8c548eb8ebf0b96
+R
+"videos/templates/delete_video.html,d\a\dad9da097fe13207d99328f396f1627a143c66ba
+P
+ videos/templates/all_videos.html,d\c\dc67e6a1a98a973beef26f5ad14d4702b31417de
+R
+"videos/templates/video_detail.html,d\3\d34ddb77fcf2a221bf96e79833457247970bb162
+`
+0venv/Lib/site-packages/django/template/loader.py,0\f\0f56c0fbfdfae0bceb896b0df02e176d78d96ccd
+W
+'videos/templates/permission_denied.html,d\a\da710daa3fdf55efaaf6eea760c5e9f6b484d97b

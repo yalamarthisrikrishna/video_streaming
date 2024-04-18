@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Videos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button.btn-create {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        button[type="submit"]:hover,
+        button.btn-create:hover {
+            opacity: 0.8;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        h2 {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>All Videos</h1>
+        <!-- Search form -->
+        <form id="searchForm" method="GET" action="{% url 'all_videos' %}">
+            <input type="text" name="query" placeholder="Search Videos" value="{{ request.GET.query }}">
+            <button type="submit">Search</button>
+            <button type="button" onclick="location.href='{% url 'create_video' %}'" class="btn-create">Create Video</button>
+        </form>
+        <ul>
+            {% for video in videos %}
+                <li>
+                    <h2><a href="{% url 'video_detail' video.pk %}">{{ video.name }}</a></h2>
+                    <div class="video-container">
+                        <video controls autoplay>
+                            <source src="{% url 'video_feed' video.video_url %}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <!-- Add a link to the video file or a thumbnail image -->
+                    <a href="{{ video.video_url }}" target="_blank">Play Video</a>
+                    <!-- Add buttons for editing and deleting -->
+                    <form action="{% url 'edit_video' video.pk %}" method="get" style="display: inline;">
+                        <button type="submit">Edit</button>
+                    </form>
+                    <form action="{% url 'delete_video' video.pk %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
